@@ -87,7 +87,7 @@ function drawtable(primes){
 
 //My own algorithm for finding primes
 //not as efficient as Eratosthenes algo but works
-function primefind(userInput){
+function primefindAlt(userInput){
 	var start = new Date().getTime();
 	var count = 0;
 	var numbers = [];
