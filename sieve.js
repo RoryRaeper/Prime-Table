@@ -1,7 +1,7 @@
 //Based on Eratosthenes algorithm.
 //Takes input and finds all prime numbers lower than it.
 function primefind(userInput){
-    var start = new Date().getTime();
+	var start = new Date().getTime();
 	var numbers = []; //Array holding all numbers from 0 to the inputted number
 	var output = []
 	numbers[0], numbers[1] = false; //Sets 0 and 1 as not prime
@@ -20,17 +20,17 @@ function primefind(userInput){
 	}
 
 	var end = new Date().getTime();
-    var time = end - start;
-    alert('Execution time: ' + time);
+	var time = end - start;
+	alert('Execution time: ' + time);
 
-    //Pushes the prime numbers to a second "int" array
+	//Pushes the prime numbers to a second "int" array
 	for(var i = 0; i < userInput; i++){
-        if(numbers[i]){
-            output.push(i); 
-        }         
-    }
-    drawtable(output);
-    return output; //Returns the prime number array
+		if(numbers[i]){
+			output.push(i); 
+		}
+	}
+	drawtable(output);
+	return output; //Returns the prime number array
 }
 
 document.write(primefind(100));
@@ -83,3 +83,68 @@ function drawtable(primes){
 	}
 	document.write("</table>");
 }
+
+
+//My own algorithm for finding primes
+//not as efficient as Eratosthenes algo but works
+function primefind(userInput){
+	var start = new Date().getTime();
+	var count = 0;
+	var numbers = [];
+	var output = [];
+	//initialises boolean array for use later 
+	for(var i = 2; i < userInput; i++){
+		numbers.push(true);
+	}
+	numbers[0] = false; //sets 1 and zero to not be prime
+	numbers[1] = false;
+
+	//starts iterating through numbers from 2 to n-1
+	for(var j = 2; j < userInput; j++){
+		//calculates first few prime numbers for use later
+		if(j<10){
+			for(var k = 2; k < j; k++){
+				if(j%k === 0){
+					numbers[j] = false;
+					break;
+				}
+			}
+		}
+		else{
+			var smallFactor = Math.sqrt(j);
+			if(j%smallFactor === 0){  //Checks if Square root is a factor
+				numbers[j] = false;
+				continue;
+			}
+			else if(j%2 === 0){ //Checks if common divisors, 2 and 3, are factors
+				numbers[j] = false;
+				continue;
+			}
+			else if(j%3 === 0){
+				numbers[j] = false;
+				continue;
+			}
+			else{ //Checks all primes under the square root of n 
+				for(var k = 2; k < smallFactor; k++){
+					if(numbers[k]){
+						if(j%k === 0){
+							numbers[j] = false;
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+	//Pushes to another array 
+	for(var i = 0; i < userInput; i++){
+		if(numbers[i] === true){
+			output.push(i);          
+		}
+	}
+
+	var end = new Date().getTime();
+	var time = end - start;
+	alert('Execution time: ' + time);
+	return output;
+	}
