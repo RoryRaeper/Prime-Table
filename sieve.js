@@ -29,7 +29,57 @@ function primefind(userInput){
             output.push(i); 
         }         
     }
+    drawtable(output);
     return output; //Returns the prime number array
 }
 
 document.write(primefind(100));
+
+
+//Function to create the multiplication table
+//Takes the prime array from primefind as input
+function drawtable(primes){
+	var numbers = [];
+	//Initialising a 2d array to be 1 > than the length of the prime array
+	for(var i = 0; i <= primes.length; i++){
+		numbers[i] = [];
+	}
+	//Sets the x, and y axes to be prime numbers 
+	for(var i=0; i < primes.length; i++){
+		if(i===0){ //First value is set to be zero as it isn't used
+			numbers[0][0] = 0;
+		}
+		numbers[i+1][0] = primes[i];
+		numbers[0][i+1] = primes[i];
+	}
+
+	//Fills the rest of the table 
+	for(var i = 0; i < primes.length; i++){
+		for(var j = 0; j < primes.length; j++){
+			numbers[i+1][j+1] = primes[i]*primes[j]; //multiplying the axes together
+		}
+	}
+	
+	//Starts drawing table here, iterates through the x, and y axes to print all cells
+	document.write("<table>");
+	for(var i = 0; i <= primes.length; i++){
+		document.write("<tr>");
+		for(var j = 0; j <= primes.length; j++){
+			//if statements for filling the heading cells
+			if(j===0 && i ===0){
+				document.write("<th></th>");
+			}
+			else if(i === 0){
+				document.write("<th>" + numbers[i][j] + "</th>");
+			}
+			else if(j === 0){
+				document.write("<th>" + numbers[i][j] + "</th>");
+			}
+			else{
+				document.write("<td>" + numbers[i][j] + "</td>");
+			}
+		}
+		document.write("</tr>");
+	}
+	document.write("</table>");
+}
