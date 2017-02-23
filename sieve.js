@@ -1,3 +1,49 @@
+//Main function which calls other functions.
+//Takes inputs from the web page
+function makePrimeTable(){
+	var input = document.getElementById('userinput').value;
+	if (isNaN(input)){
+		alert("INPUT isn't a number.\nPlease enter only integers greater than 1");
+	}
+	else{
+		if(input > 1){
+		var sel = document.getElementById("algChoice");
+		var algVersion = sel.options[sel.selectedIndex].value;
+	
+		var sel2 = document.getElementById("functionChoice");
+		var funcVersion = sel2.options[sel2.selectedIndex].value;
+	
+		//Checks what algorithm the user wants to use
+		if(algVersion === 'alg1'){
+			//checks what function the user wants to use
+			if(funcVersion === 'func1'){
+				primes = primefind(input);
+				document.getElementById("primehost").innerHTML=primes;
+			}
+			else if(funcVersion === 'func2'){
+				var primes = [];
+				primes = primefind(input);
+				drawtable(primes);
+			}
+		}else if(algVersion === 'alg2'){
+			//checks what function the user wants to use
+			if(funcVersion === 'func1'){
+				primes = primefindAlt(input);
+				document.getElementById("primehost").innerHTML=primes;
+			}
+			else if(funcVersion === 'func2'){
+				var primes = [];
+				primes = primefindAlt(input);
+				drawtable(primes);
+			}
+		}
+		}
+		else{
+			alert("INPUT isn't greater than 0.\nPlease enter only integers greater than 1");
+		}
+	}
+}
+
 //Based on Eratosthenes algorithm.
 //Takes input and finds all prime numbers lower than it.
 function primefind(userInput){
@@ -29,11 +75,8 @@ function primefind(userInput){
 			output.push(i); 
 		}
 	}
-	drawtable(output);
 	return output; //Returns the prime number array
 }
-
-document.write(primefind(100));
 
 
 //Function to create the multiplication table
@@ -61,27 +104,28 @@ function drawtable(primes){
 	}
 	
 	//Starts drawing table here, iterates through the x, and y axes to print all cells
-	document.write("<table>");
+	var tableString = "<table>";
 	for(var i = 0; i <= primes.length; i++){
-		document.write("<tr>");
+		tableString+="<tr>";
 		for(var j = 0; j <= primes.length; j++){
 			//if statements for filling the heading cells
 			if(j===0 && i ===0){
-				document.write("<th></th>");
+				tableString+="<th></th>";
 			}
 			else if(i === 0){
-				document.write("<th>" + numbers[i][j] + "</th>");
+				tableString+=("<th>" + numbers[i][j] + "</th>");
 			}
 			else if(j === 0){
-				document.write("<th>" + numbers[i][j] + "</th>");
+				tableString+=("<th>" + numbers[i][j] + "</th>");
 			}
 			else{
-				document.write("<td>" + numbers[i][j] + "</td>");
+				tableString+=("<td>" + numbers[i][j] + "</td>");
 			}
 		}
-		document.write("</tr>");
+		tableString+="</tr>";
 	}
-	document.write("</table>");
+	tableString+="</table>";
+	document.getElementById("host").innerHTML=tableString;
 }
 
 
@@ -146,5 +190,6 @@ function primefindAlt(userInput){
 	var end = new Date().getTime();
 	var time = end - start;
 	alert('Execution time: ' + time);
+	drawtable(output);
 	return output;
 	}
