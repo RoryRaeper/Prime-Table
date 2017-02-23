@@ -1,0 +1,34 @@
+table, th, td {
+	border: 1px solid #bfbfbf;
+	border-collapse: collapse;
+	padding: 5px;
+	text-align:left;
+}
+
+th{
+	background-color: gray;
+	color: white;
+}
+
+tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+body{
+	font-family: Arial;
+	text-align: center;
+	padding:15px;
+}
+
+#primehost{
+	max-width: 100%;
+	width:100%;
+	text-align:center;
+	word-wrap: break-word;
+	display: inline-block;
+	margin = 0 auto;
+}
+
+#host{
+	text-align: center;
+}
