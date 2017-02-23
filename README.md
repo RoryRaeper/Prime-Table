@@ -6,11 +6,14 @@
 
 2.Choose the algorithm you would like to use and the function you would like to use.
 
-3. Enter the maximum number you would like to use.
+3.Enter the maximum number you would like to use.
 
-4. A window will pop up stating the run time for the generating primes(in milliseconds).
+4.A window will pop up stating the run time for the generating primes(in milliseconds).
 
-5. The output will be displayed underneath.
+5.The output will be displayed underneath.
+
+More Info
+
 
 Creating the primetable will show a table with the x and y axes and the two axes multiplied in the cells.
 
