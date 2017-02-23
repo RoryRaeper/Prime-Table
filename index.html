@@ -3,17 +3,29 @@
 <head>
     <title>Prime Table</title>
     <script src="sieve.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 </head>
 <style>
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-body{
-	font-family: Arial;
-}
+
 </style>
+
 <body>
-<div class = table></div>
+<label>Select the algorithm you would like to use: </label>
+<select id = "algChoice">
+	<option value="alg1">Eratosthenes Algorithm</option>
+	<option value="alg2">My Algorithm</option>
+</select><br><br>
+<label>Select the function you would like to use: </label>
+<select id = "functionChoice">
+	<option value="func2">Create Prime Table</option>
+	<option value="func1">Calculate Primes up to n</option>
+</select>
+<br><br>
+<input type="text" name="userinput" id="userinput" value="">
+	<button onclick="makePrimeTable()">Submit</button>
+	<br><br><br>
+<div id = "host">
+<div id = "primehost"></div>
+</div>
 </body>
 </html>
